@@ -1,3 +1,3 @@
 pymongo==4.2.0
 
--e .   #edit mode don't need to run getup.py again and again it'll trigger steup after installing req
+-e .   #edit mode don't need to rungit setup.py again and again it'll trigger steup after installing req

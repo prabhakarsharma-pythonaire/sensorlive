@@ -1,3 +1,7 @@
 pymongo==4.2.0
+pandas
+numpy
+matplotlib
+seaborn
 
 -e .   #edit mode don't need to rungit setup.py again and again it'll trigger steup after installing req
