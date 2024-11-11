@@ -1,4 +1,6 @@
 from dotenv import load_dotenv
+load_dotenv()  # Add this line to load .env variables properly
+
 import pymongo
 from sensor.constant.database import DATABASE_NAME
 import certifi
@@ -7,14 +9,17 @@ from sensor.constant.env_variable import MONGODB_URL_KEY
 import os 
 import logging 
 
-load_dotenv()
+
 class MongoDBClient:
     client = None
 
     def __init__(self, database_name=DATABASE_NAME) -> None:
         try:
             if MongoDBClient.client is None:
+
                 mongo_db_url = os.getenv(MONGODB_URL_KEY)
+                logging.info(f"Retrieved MongoDB URL from .env: {mongo_db_url}")
+
                 logging.info(f"Retrieved MongoDB URL: {mongo_db_url}")
 
                 if "localhost" in mongo_db_url:

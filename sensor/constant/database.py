@@ -1,2 +1,2 @@
-DATABASE_NAME = "ineuron"
-COLLECTION_NAME = "sensor"
+DATABASE_NAME = "mldb"
+COLLECTION_NAME = "col"
