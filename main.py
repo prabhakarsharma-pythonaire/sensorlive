@@ -18,10 +18,10 @@ from sensor.pipeline.training_pipeline import TrainPipeline
 
 if __name__ == "__main__":
 
-    file_path="aps_failure_training_set1.csv"
-    database_name="mldb"
-    collection_name ="col"
-    # dump_csv_file_to_mongodb_collection(file_path,database_name,collection_name)
+    # file_path="aps_failure_training_set1.csv"
+    # database_name="mldb"
+    # collection_name ="col"
+    # # dump_csv_file_to_mongodb_collection(file_path,database_name,collection_name)
 
     training_pipeline = TrainPipeline()
     training_pipeline.run_pipeline()

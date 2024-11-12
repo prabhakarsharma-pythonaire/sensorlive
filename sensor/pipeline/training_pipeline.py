@@ -21,6 +21,14 @@ from sensor.entity.artifact_entity import DataIngestionArtifact, DataValidationA
 from sensor.components.data_transformation import DataTransformation
 
 
+from sensor.components.model_trainer import ModelTrainer
+from sensor.entity.artifact_entity import ModelTrainerArtifact
+from sensor.entity.config_entity import ModelTrainerConfig
+
+
+
+
+
 class TrainPipeline:
 
     def __init__(self):
@@ -85,24 +93,31 @@ class TrainPipeline:
             return data_transformation_artifact
         except  Exception as e:
             raise  SensorException(e,sys)
-        
 
 
+    def start_model_trainer(self,data_transformation_artifact:DataTransformationArtifact):
+        try:
+            model_trainer_config = ModelTrainerConfig(training_pipeline_config=self.training_pipeline_config)
+            model_trainer = ModelTrainer(model_trainer_config, data_transformation_artifact)
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+            return model_trainer_artifact
+        except  Exception as e:
+            raise  SensorException(e,sys)
 
     def run_pipeline(self):
         try:
-            data_ingestion_artifact:DataIngestionArtifact = self.start_data_ingestion()
+            data_ingestion_artifact: DataIngestionArtifact = self.start_data_ingestion()
+
+            data_validation_artifact = self.start_data_validaton(data_ingestion_artifact=data_ingestion_artifact)
+
+            data_transformation_artifact = self.start_data_transformation(
+                data_validation_artifact=data_validation_artifact)
+
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact)
 
 
+        except Exception as e:
+            raise SensorException(e, sys)
 
 
-            data_validation_artifact=self.start_data_validaton(data_ingestion_artifact=data_ingestion_artifact)
-
-
-
-            data_transformation_artifact = self.start_data_transformation(data_validation_artifact=data_validation_artifact)
-
-            
-        except Exception as e :    
-            raise  SensorException(e,sys)
         

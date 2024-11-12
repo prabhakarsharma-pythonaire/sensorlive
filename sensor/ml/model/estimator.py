@@ -15,9 +15,9 @@ class TargetValueMapping:
 
 class SensorModel:
 
-    def __init__(self,preproessor, model):
+    def __init__(self,preprocessor, model):
         try:
-            self.preprocessor = preproessor
+            self.preprocessor = preprocessor
             self.model = model
         except Exception as e:
             raise e
