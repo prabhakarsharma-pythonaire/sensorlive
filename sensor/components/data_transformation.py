@@ -54,10 +54,10 @@ class DataTransformation:
     def get_data_transformer_object(cls)->Pipeline:
         try:
             robust_scaler = RobustScaler()
-            simple_imputer = SimpleImputer(strategy="constant", fill_value=0)
+            simple_imputer = SimpleImputer(strategy="mean")
             preprocessor = Pipeline(
                 steps=[
-                    ("Imputer", simple_imputer), #replace missing values with zero
+                    ("Imputer", simple_imputer), #replace missing values with mean
                     ("RobustScaler", robust_scaler) #keep every feature in same range and handle outlier
                     ]
             )

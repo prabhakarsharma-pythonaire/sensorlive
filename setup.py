@@ -1,8 +1,9 @@
-# from setuptools import find_packages ,setup 
-# from typing import List
-
-
-
+from setuptools import find_packages ,setup
+from typing import List
+import os.path
+from sensor.exception import SensorException
+import sys
+import dill
 # def get_requirements()->List[str]:
 
 #     reuirements_list : List[str] =[]
@@ -18,6 +19,9 @@
 
 from setuptools import find_packages,setup
 from typing import List
+
+from sensor.exception import SensorException
+
 
 def get_requirements()->List[str]:
     """
@@ -44,3 +48,15 @@ setup (
     packages = find_packages(),
     install_requires = get_requirements(),
 )
+
+
+def load_object(file_path:str)->object:
+    try:
+        if not os.path.exists(file_path):
+            raise Exception(f"The file:{file_path} is not exists")
+
+        with open(file_path,"rb") as file_obj:
+            return dill.load(file_obj)
+
+    except Exception as e:
+        raise SensorException(e,sys) from e
