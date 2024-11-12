@@ -6,6 +6,9 @@ ARTIFACT_DIR = "artifact"
 FILE_NAME = "sensor.csv"
 
 
+SAVED_MODEL_DIR = os.path.join("saved_models")
+
+
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
 
@@ -64,3 +67,15 @@ MODEL_TRAINER_OVER_FIITING_UNDER_FITTING_THRESHOLD: float = 0.05
 
 
 
+"""
+Model Evaluation ralated constant start with MODEL EVALUATION VAR NAME
+"""
+
+MODEL_EVALUATION_DIR_NAME: str = "model_evaluation"
+MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
+MODEL_EVALUATION_REPORT_NAME: str = "report.yaml"
+
+
+
+MODEL_PUSHER_DIR_NAME = "model_pusher"
+MODEL_PUSHER_SAVED_MODEL_DIR = SAVED_MODEL_DIR

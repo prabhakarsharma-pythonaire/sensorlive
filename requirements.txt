@@ -8,5 +8,6 @@ scikit-learn
 PyYAML
 dill
 xgboost==1.6.2
-
+fastapi
+uvicorn
 -e .   #edit mode don't need to rungit setup.py again and again it'll trigger steup after installing reqpi
